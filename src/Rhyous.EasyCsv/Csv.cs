@@ -7,6 +7,8 @@ namespace Rhyous.EasyCsv
 {
     public class Csv : CsvBase
     {
+        private readonly Stream _Stream;
+
         public Csv(string csvPath, bool hasHeaderLine = true, char delimiter = ',') : base(csvPath, hasHeaderLine, delimiter)
         {
         }
@@ -16,10 +18,30 @@ namespace Rhyous.EasyCsv
         {
         }
 
+        public Csv(Stream stream, bool hasHeaderLine = true, char delimiter = ',')
+            : this("", hasHeaderLine, delimiter)
+        {
+            _Stream = stream;
+            if (FileExists)
+            {
+                ParseCsv();
+            }
+        }
+
+        public Csv(Stream stream, char delimiter)
+            : this(stream, true, delimiter)
+        {
+        }
+
+        public override bool FileExists
+        {
+            get { return base.FileExists || _Stream != null; }
+        }
+
         public override void ParseCsv()
         {
             Clear();
-            var rows = GetRows();          
+            var rows = GetRows();
             if (rows.Count > 0)
             {
                 if (HasHeader)
@@ -32,11 +54,13 @@ namespace Rhyous.EasyCsv
 
         private List<List<string>> GetRows()
         {
+            if (!FileExists)
+                return null;
             var rows = new List<List<string>>();
             var row = new List<string>();
             var groupOpen = false;
             var builder = new StringBuilder();
-            var reader = new StreamReader(CsvPath);
+            var reader = _Stream == null ? new StreamReader(CsvPath) : new StreamReader(_Stream);
             do
             {
                 char c = (char)reader.Read();

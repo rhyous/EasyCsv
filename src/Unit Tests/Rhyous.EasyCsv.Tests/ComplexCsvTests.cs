@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using Rhyous.EasyCsv.Tests.Extensions;
 
 namespace Rhyous.EasyCsv.Tests
 {
@@ -114,15 +115,15 @@ namespace Rhyous.EasyCsv.Tests
                         {
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", Environment.NewLine),
+                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Get()),
                                 },
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", Environment.NewLine),
+                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Get()),
                                 }
                         };
             // Act
@@ -146,15 +147,15 @@ namespace Rhyous.EasyCsv.Tests
                         {
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", Environment.NewLine),
+                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Get()),
                                 },
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", Environment.NewLine),
+                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Get()),
                                 }
                         };
             // Act
@@ -205,15 +206,15 @@ namespace Rhyous.EasyCsv.Tests
                         {
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", Environment.NewLine),
+                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Get()),
                                 },
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", Environment.NewLine),
-                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", Environment.NewLine),
+                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Get()),
                                 }
                         };
             // Act
@@ -242,6 +243,43 @@ namespace Rhyous.EasyCsv.Tests
             CollectionAssert.AreEqual(headers, csv.Headers);
             Assert.AreEqual(0, csv.Rows.Count);
             var i = 0;
+        }
+
+
+
+        [TestMethod]
+        public void ComplexCsvFromStreamTest()
+        {
+            // Arrange         
+            var headers = new List<string> { "H1", "H2", "H3" };
+            var rows = new List<List<string>>()
+                        {
+                            new List<string>
+                                {
+                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Get()),
+                                },
+                            new List<string>
+                                {
+                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Get()),
+                                }
+                        };
+            // Act
+
+            var csvAsString = "H1,H2,H3\r\n\"A\r\nB\r\nC\",\"D\r\nE\r\nF\",\"G\r\nH\r\nI\"\r\n\"J\r\nK\r\nL\",\"M\r\nN\r\nO\",\"P\r\nQ\r\nR\"\r\n";
+            var csv = new Csv(csvAsString.AsStream());
+
+            // Assert
+            CollectionAssert.AreEqual(headers, csv.Headers);
+            Assert.AreEqual(rows.Count, csv.Rows.Count);
+            var i = 0;
+            foreach (var row in csv.Rows)
+            {
+                CollectionAssert.AreEqual(rows[i++], row);
+            }
         }
     }
 }

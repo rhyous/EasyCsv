@@ -20,6 +20,16 @@ namespace Rhyous.EasyCsv.Tests
             return GetNewLineFromFile(NewLineFile);
         }
 
+        public static string Windows()
+        {
+            return "\r\n";
+        }
+
+        public static string Standard()
+        {
+            return "\n";
+        }
+
         public static string GetNewLineFromFile(string fileName)
         {
             if (File.Exists(fileName))

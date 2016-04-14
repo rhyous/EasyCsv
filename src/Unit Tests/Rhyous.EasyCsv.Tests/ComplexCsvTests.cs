@@ -256,15 +256,15 @@ namespace Rhyous.EasyCsv.Tests
                         {
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Get()),
-                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Get()),
-                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Windows()),
+                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Windows()),
+                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Windows()),
                                 },
                             new List<string>
                                 {
-                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Get()),
-                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Get()),
-                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Windows()),
+                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Windows()),
+                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Windows()),
                                 }
                         };
             // Act

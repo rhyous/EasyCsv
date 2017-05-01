@@ -11,7 +11,7 @@ namespace Rhyous.EasyCsv
         string CsvPath { get; }
         List<string> Headers { get; }
         int Columns { get; }
-        List<List<string>> Rows { get; }
+        List<Row<string>> Rows { get; }
 
         void ParseCsv();
     }

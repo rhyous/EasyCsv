@@ -30,14 +30,14 @@ namespace Rhyous.EasyCsv
 
         public readonly List<string> Lines = new List<string>();
 
-        private List<List<string>> GetRows(List<string> lines)
+        private List<Row<string>> GetRows(List<string> lines)
         {
             return lines.Skip(HasHeader ? 1 : 0).Select(l => GetColumnsFromLine(l)).ToList();
         }
 
-        private List<string> GetColumnsFromLine(string line)
+        private Row<string> GetColumnsFromLine(string line)
         {
-            return line.Split(Delimiter).Select(s => s.Trim()).ToList();
+            return new Row<string>(line.Split(Delimiter).Select(s => s.Trim()).ToList(), this);
         }
 
         private List<string> GetLines()

@@ -35,10 +35,10 @@ namespace Rhyous.EasyCsv
             get { return _Headers.Value; }
         } private readonly Lazy<List<string>> _Headers = new Lazy<List<string>>();
 
-        public virtual List<List<string>> Rows
+        public virtual List<Row<string>> Rows
         {
             get { return _Rows.Value; }
-        } private readonly Lazy<List<List<string>>> _Rows = new Lazy<List<List<string>>>();
+        } private readonly Lazy<List<Row<string>>> _Rows = new Lazy<List<Row<string>>>();
 
         public abstract void ParseCsv();
     }

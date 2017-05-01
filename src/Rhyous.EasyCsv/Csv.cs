@@ -49,15 +49,19 @@ namespace Rhyous.EasyCsv
                     Headers.AddRange(rows[0]);
                 }
                 Rows.AddRange(HasHeader ? rows.Skip(1) : rows);
+                foreach (var row in Rows)
+                {
+                    row.Parent = this;
+                }
             }
         }
 
-        private List<List<string>> GetRows()
+        private List<Row<string>> GetRows()
         {
             if (!FileExists)
                 return null;
-            var rows = new List<List<string>>();
-            var row = new List<string>();
+            var rows = new List<Row<string>>();
+            var row = new Row<string>();
             var groupOpen = false;
             var builder = new StringBuilder();
             var reader = _Stream == null ? new StreamReader(CsvPath) : new StreamReader(_Stream);
@@ -93,7 +97,7 @@ namespace Rhyous.EasyCsv
             return rows;
         }
 
-        private static void AddFinalRow(List<List<string>> rows, ref List<string> row, ref StringBuilder builder)
+        private static void AddFinalRow(List<Row<string>> rows, ref Row<string> row, ref StringBuilder builder)
         {
             if (row.Count > 0)
             {
@@ -111,13 +115,13 @@ namespace Rhyous.EasyCsv
             }
         }
 
-        private static void AddRow(List<List<string>> rows, ref List<string> row, ref StringBuilder builder)
+        private static void AddRow(List<Row<string>> rows, ref Row<string> row, ref StringBuilder builder)
         {
             if (IsWhiteSpaceOnly(row, builder))
                 return;
             AddColumn(row, ref builder);
             rows.Add(row);
-            row = new List<string>();
+            row = new Row<string>();
         }
 
         private static void AddColumn(List<string> row, ref StringBuilder builder)

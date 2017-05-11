@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Rhyous.EasyCsv</id>
+    <version>1.0.1</version>
+    <title>Rhyous.EasyCsv</title>
+    <authors>Jared Barneck (Rhyous)</authors>
+    <owners>Jared Barneck (Rhyous)</owners>
+    <description>Easy coding of csv parsing. This NuGet package adds easy to use csv features.</description>
+    <releaseNotes>https://github.com/rhyous/SimpleArgs/blob/master/ReleaseNotes.txt</releaseNotes>
+    <summary>Easy coding of csv parsing.</summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/rhyous/EasyCsv</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/rhyous/EasyXml/master/EasyXml.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/rhyous/EasyCsv/blob/master/LICENSE</licenseUrl>
+    <copyright>Copyright Jared Barneck (Rhyous) 2015</copyright>
+    <tags>csv comma separated variable easy</tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+  </files>
+</package>

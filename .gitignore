@@ -234,3 +234,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/src/NuGet/Rhyous.EasyCsv.NuGet/lib/net40-client/Rhyous.EasyCsv.dll

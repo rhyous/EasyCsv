@@ -63,10 +63,16 @@ namespace Rhyous.EasyCsv
             var rows = new List<Row<string>>();
             var row = new Row<string>();
             var groupOpen = false;
+            var cellDataStarted = false;
             var builder = new StringBuilder();
+            var skipped = new StringBuilder();
             var reader = _Stream == null ? new StreamReader(CsvPath) : new StreamReader(_Stream);
             do
             {
+                if (!cellDataStarted && char.IsWhiteSpace((char)reader.Peek()))
+                    SkipWhitespace(reader);
+                cellDataStarted = true;
+
                 char c = (char)reader.Read();
                 if (c == '"')
                 {
@@ -84,12 +90,26 @@ namespace Rhyous.EasyCsv
                 {
                     AddRow(rows, ref row, ref builder);
                     SkipNext(reader, "\r\n".ToCharArray(), 100);
+                    cellDataStarted = false;
+                    skipped.Clear();
                     continue;
                 }
                 if (c == Delimiter && !groupOpen)
                 {
                     AddColumn(row, ref builder);
+                    cellDataStarted = false;
+                    skipped.Clear();
                     continue;
+                }
+                if (char.IsWhiteSpace(c) && !groupOpen)
+                {
+                    skipped.Append(c);
+                    continue;
+                }
+                if (skipped.Length > 0)
+                {
+                    builder.Append(skipped);
+                    skipped.Clear();
                 }
                 builder.Append(c);
             } while (!reader.EndOfStream);
@@ -102,6 +122,14 @@ namespace Rhyous.EasyCsv
             if (row.Count > 0)
             {
                 AddRow(rows, ref row, ref builder);
+            }
+        }
+
+        private static void SkipWhitespace(StreamReader reader)
+        {
+            while (char.IsWhiteSpace((char)reader.Peek()))
+            {
+                reader.Read(); //skip next whitespace
             }
         }
 

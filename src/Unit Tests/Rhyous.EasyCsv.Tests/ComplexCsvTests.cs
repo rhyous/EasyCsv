@@ -245,8 +245,6 @@ namespace Rhyous.EasyCsv.Tests
             var i = 0;
         }
 
-
-
         [TestMethod]
         public void ComplexCsvFromStreamTest()
         {
@@ -310,6 +308,39 @@ namespace Rhyous.EasyCsv.Tests
                     Assert.AreEqual(rows[i][j++], csv.Rows[i][header]);
                 }
                 i++;
+            }
+        }
+
+        [TestMethod]
+        public void ComplexCsvForceSpaceInHeaderTest()
+        {
+            // Arrange         
+            var headers = new List<string> { "H1", "H2", " H3 " };
+            var rows = new List<List<string>>()
+                        {
+                            new List<string>
+                                {
+                                    string.Format("{0}{3}{1}{3}{2}", "A", "B", "C", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "D", "E", "F", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "G", "H", "I", NewLine.Get()),
+                                },
+                            new List<string>
+                                {
+                                    string.Format("{0}{3}{1}{3}{2}", "J", "K", "L", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "M", "N", "O", NewLine.Get()),
+                                    string.Format("{0}{3}{1}{3}{2}", "P", "Q", "R", NewLine.Get()),
+                                }
+                        };
+            // Act
+            var csv = new Csv(@"Data\ComplexForceSpaceInHeader.csv");
+
+            // Assert
+            CollectionAssert.AreEqual(headers, csv.Headers);
+            Assert.AreEqual(rows.Count, csv.Rows.Count);
+            var i = 0;
+            foreach (var row in csv.Rows)
+            {
+                CollectionAssert.AreEqual(rows[i++], row);
             }
         }
     }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Rhyous.EasyCsv
 {
-    public class Row<T> : List<T>
+    public class Row<T> : List<T>, IParent<ICsv>
     {
         public Row()
         { }
@@ -30,7 +31,13 @@ namespace Rhyous.EasyCsv
 
         public T this[string header]
         {
-            get { return this[Parent.Headers.IndexOf(header)]; }
+            get
+            {
+                var id = Parent.Headers.IndexOf(header);
+                if (id < 0 && (Parent != null && Parent.ThrowExceptionOnMissingHeader))
+                    throw new HeaderMissingException("Header not found: " + header);
+                return id >= 0 ? this[id] : default(T);
+            }
             set { this[Parent.Headers.IndexOf(header)] = value; }
         }
     }

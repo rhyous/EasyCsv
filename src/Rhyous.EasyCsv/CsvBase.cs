@@ -6,11 +6,23 @@ namespace Rhyous.EasyCsv
 {
     public abstract class CsvBase : ICsv
     {
-        public CsvBase(string csvPath, bool hasHeaderLine = true, char delimiter = ',')
+        public CsvBase(char delimiter = ',') {            
+            Delimiter = delimiter;
+        }
+
+        public CsvBase(bool hasHeaderRow, char delimiter = ',') : this(delimiter)
+        {
+            HasHeaderRow = hasHeaderRow;
+        }
+
+        public CsvBase(IEnumerable<string> headers, char delimiter = ',') : this(true, delimiter)
+        {
+            Headers.AddRange(headers);
+        }
+
+        public CsvBase(string csvPath, bool hasHeaderRow = true, char delimiter = ',') : this(hasHeaderRow, delimiter)
         {
             CsvPath = csvPath;
-            HasHeader = hasHeaderLine;
-            Delimiter = delimiter;
             if (FileExists)
             {
                 ParseCsv();
@@ -19,7 +31,9 @@ namespace Rhyous.EasyCsv
 
         public virtual char Delimiter { get; }
 
-        public virtual bool HasHeader { get; }
+        public virtual bool HasHeaderRow { get; }
+
+        public virtual bool ThrowExceptionOnMissingHeader { get; set; }
 
         public virtual int Columns { get { return Headers.Count > 0 ? Headers.Count : (Rows.Count > 0 ? Rows[0].Count : 0); } }
 
@@ -35,10 +49,10 @@ namespace Rhyous.EasyCsv
             get { return _Headers.Value; }
         } private readonly Lazy<List<string>> _Headers = new Lazy<List<string>>();
 
-        public virtual List<Row<string>> Rows
+        public virtual RowCollection<string> Rows
         {
-            get { return _Rows.Value; }
-        } private readonly Lazy<List<Row<string>>> _Rows = new Lazy<List<Row<string>>>();
+            get { return _Rows ?? (_Rows = new RowCollection<string>(this)); }
+        } private RowCollection<string> _Rows;
 
         public abstract void ParseCsv();
     }

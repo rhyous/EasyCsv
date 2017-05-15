@@ -21,7 +21,7 @@ namespace Rhyous.EasyCsv
         private List<string> GetHeaders(List<string> lines)
         {
             var headers = new List<string>();
-            if (HasHeader && lines.Count > 0)
+            if (HasHeaderRow && lines.Count > 0)
             {
                 headers = GetColumnsFromLine(lines[0]);
             }
@@ -32,7 +32,7 @@ namespace Rhyous.EasyCsv
 
         private List<Row<string>> GetRows(List<string> lines)
         {
-            return lines.Skip(HasHeader ? 1 : 0).Select(l => GetColumnsFromLine(l)).ToList();
+            return lines.Skip(HasHeaderRow ? 1 : 0).Select(l => GetColumnsFromLine(l)).ToList();
         }
 
         private Row<string> GetColumnsFromLine(string line)

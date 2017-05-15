@@ -9,17 +9,15 @@ namespace Rhyous.EasyCsv
     {
         private readonly Stream _Stream;
 
-        public Csv(string csvPath, bool hasHeaderLine = true, char delimiter = ',') : base(csvPath, hasHeaderLine, delimiter)
-        {
-        }
+        public Csv() : base(false, ',') { }
+        public Csv(char delimiter) : base(false, delimiter) { }
+        public Csv(bool hasHeaderRow, char delimiter = ',') : base(hasHeaderRow, delimiter) { }
+        public Csv(List<string> headers, char delimiter = ',') : base(headers, delimiter) { }
+        public Csv(string csvPath, bool hasHeaderRow = true, char delimiter = ',') : base(csvPath, hasHeaderRow, delimiter) { }
+        public Csv(string csvPath, char delimiter) : this(csvPath, true, delimiter) { }
 
-        public Csv(string csvPath, char delimiter)
-            : this(csvPath, true, delimiter)
-        {
-        }
-
-        public Csv(Stream stream, bool hasHeaderLine = true, char delimiter = ',')
-            : this("", hasHeaderLine, delimiter)
+        public Csv(Stream stream, bool hasHeaderRow = true, char delimiter = ',')
+            : this("", hasHeaderRow, delimiter)
         {
             _Stream = stream;
             if (FileExists)
@@ -44,11 +42,11 @@ namespace Rhyous.EasyCsv
             var rows = GetRows();
             if (rows.Count > 0)
             {
-                if (HasHeader)
+                if (HasHeaderRow)
                 {
                     Headers.AddRange(rows[0]);
                 }
-                Rows.AddRange(HasHeader ? rows.Skip(1) : rows);
+                Rows.AddRange(HasHeaderRow ? rows.Skip(1) : rows);
                 foreach (var row in Rows)
                 {
                     row.Parent = this;

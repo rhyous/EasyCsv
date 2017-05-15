@@ -43,7 +43,10 @@
   <ItemGroup>
     <Compile Include="Csv.cs" />
     <Compile Include="CsvBase.cs" />
+    <Compile Include="Exceptions\HeaderMissingException.cs" />
+    <Compile Include="Interfaces\IParent.cs" />
     <Compile Include="Model\Row.cs" />
+    <Compile Include="Model\RowCollection.cs" />
     <Compile Include="NaiveCsv.cs" />
     <Compile Include="Extensions\CsvExtensions.cs" />
     <Compile Include="Interfaces\ICsv.cs" />

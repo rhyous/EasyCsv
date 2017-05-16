@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Rhyous.EasyCsv.NuGet.Sources</id>
+    <id>Rhyous.EasyCsv.Sources</id>
     <version>1.0.0</version>
-    <title>Rhyous.EasyCsv.NuGet.Sources</title>
+    <title>Rhyous.EasyCsv.Sources</title>
     <authors>Jared.Barneck</authors>
     <owners></owners>
     <description>

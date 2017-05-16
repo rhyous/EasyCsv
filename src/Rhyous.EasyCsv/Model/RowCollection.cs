@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Rhyous.EasyCsv
 {
@@ -11,7 +12,7 @@ namespace Rhyous.EasyCsv
         public void Add(List<T> row)
         {
             var newRow = ConvertRow(row);
-            Add(newRow);
+            base.Add(newRow);
         }
 
         public void AddRange(List<List<T>> rows)
@@ -28,6 +29,11 @@ namespace Rhyous.EasyCsv
         {
             var newRow = new Row<T>(Parent);
             newRow.AddRange(row);
+            if (Parent.HasHeaderRow)
+            {
+                if (newRow.Count < Parent.Headers.Count)
+                    newRow.AddRange(Enumerable.Repeat(default(T), Parent.Headers.Count - newRow.Count));
+            }
             return newRow;
         }
     }

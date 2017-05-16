@@ -7,7 +7,7 @@
     <authors>Jared Barneck (Rhyous)</authors>
     <owners>Jared Barneck (Rhyous)</owners>
     <description>Easy coding of csv parsing. This NuGet package adds easy to use csv features.</description>
-    <releaseNotes>https://github.com/rhyous/SimpleArgs/blob/master/ReleaseNotes.txt</releaseNotes>
+    <releaseNotes>https://github.com/rhyous/EasyCsv/blob/master/ReleaseNotes.txt</releaseNotes>
     <summary>Easy coding of csv parsing.</summary>
     <language>en-US</language>
     <projectUrl>https://github.com/rhyous/EasyCsv</projectUrl>

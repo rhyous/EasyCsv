@@ -2,31 +2,20 @@
 <package >
   <metadata>
     <id>Rhyous.EasyCsv.Sources</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>Rhyous.EasyCsv.Sources</title>
-    <authors>Jared.Barneck</authors>
-    <owners></owners>
-    <description>
-      A long description of the package. This shows up in the right pane of the Add Package Dialog as well as in the Package Manager Console when listing packages using the Get-Package command.
-    </description>
-    <releaseNotes>
-    </releaseNotes>
-    <summary>
-      A short description of the package. If specified, this shows up in the middle pane of the Add Package Dialog. If not specified, a truncated version of the description is used instead.
-    </summary>
+    <authors>Jared Barneck (Rhyous)</authors>
+    <owners>Jared Barneck (Rhyous)</owners>
+    <description>Easy coding of csv parsing. This NuGet package adds easy to use csv features.</description>
+    <releaseNotes>https://github.com/rhyous/EasyCsv/blob/master/ReleaseNotes.txt</releaseNotes>
+    <summary>Easy coding of csv parsing.</summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/Rhyous.EasyCsv.NuGet.Sources</projectUrl>
-    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <projectUrl>https://github.com/rhyous/EasyCsv</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/rhyous/EasyXml/master/EasyXml.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
-    <copyright>Copyright  2017</copyright>
-    <dependencies>
-        <group targetFramework="net40">
-          <dependency id="log4net" version="1.2.10" />
-        </group>
-    </dependencies>
-    <references></references>
-    <tags></tags>
+    <licenseUrl>https://github.com/rhyous/EasyCsv/blob/master/LICENSE</licenseUrl>
+    <copyright>Copyright Jared Barneck (Rhyous) 2015</copyright>
+    <tags>csv comma separated variable easy</tags>
   </metadata>
   <files>
     <file src="src\" target="src" />

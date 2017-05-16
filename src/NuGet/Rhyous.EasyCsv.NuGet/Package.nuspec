@@ -11,7 +11,7 @@
     <summary>Easy coding of csv parsing.</summary>
     <language>en-US</language>
     <projectUrl>https://github.com/rhyous/EasyCsv</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/rhyous/EasyXml/master/EasyXml.ico</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/rhyous/EasyCsv/master/csv.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/rhyous/EasyCsv/blob/master/LICENSE</licenseUrl>
     <copyright>Copyright Jared Barneck (Rhyous) 2015</copyright>

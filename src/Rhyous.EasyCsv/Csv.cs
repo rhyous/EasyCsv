@@ -31,6 +31,13 @@ namespace Rhyous.EasyCsv
         {
         }
 
+        public ICsvParser Parser
+        {
+            get { return _Parser ?? (_Parser = new CsvParser()); }
+            internal set { _Parser = value; }
+        } private ICsvParser _Parser;
+
+
         public override bool FileExists
         {
             get { return base.FileExists || _Stream != null; }
@@ -54,111 +61,12 @@ namespace Rhyous.EasyCsv
             }
         }
 
-        private List<Row<string>> GetRows()
+        internal List<Row<string>> GetRows()
         {
             if (!FileExists)
                 return null;
-            var rows = new List<Row<string>>();
-            var row = new Row<string>();
-            var groupOpen = false;
-            var cellDataStarted = false;
-            var builder = new StringBuilder();
-            var skipped = new StringBuilder();
             var reader = _Stream == null ? new StreamReader(CsvPath) : new StreamReader(_Stream);
-            do
-            {
-                if (!cellDataStarted && char.IsWhiteSpace((char)reader.Peek()))
-                    SkipWhitespace(reader);
-                cellDataStarted = true;
-
-                char c = (char)reader.Read();
-                if (c == '"')
-                {
-                    if (reader.Peek() == '"')
-                    {
-                        SkipNext(reader, new[] { '"' });
-                    }
-                    else
-                    {
-                        groupOpen = !groupOpen;
-                        continue;
-                    }
-                }
-                if (!groupOpen && (c == '\r' || c == '\n'))
-                {
-                    AddRow(rows, ref row, ref builder);
-                    SkipNext(reader, "\r\n".ToCharArray(), 100);
-                    cellDataStarted = false;
-                    skipped.Clear();
-                    continue;
-                }
-                if (c == Delimiter && !groupOpen)
-                {
-                    AddColumn(row, ref builder);
-                    cellDataStarted = false;
-                    skipped.Clear();
-                    continue;
-                }
-                if (char.IsWhiteSpace(c) && !groupOpen)
-                {
-                    skipped.Append(c);
-                    continue;
-                }
-                if (skipped.Length > 0)
-                {
-                    builder.Append(skipped);
-                    skipped.Clear();
-                }
-                builder.Append(c);
-            } while (!reader.EndOfStream);
-            AddFinalRow(rows, ref row, ref builder);
-            return rows;
-        }
-
-        private static void AddFinalRow(List<Row<string>> rows, ref Row<string> row, ref StringBuilder builder)
-        {
-            if (row.Count > 0)
-            {
-                AddRow(rows, ref row, ref builder);
-            }
-        }
-
-        private static void SkipWhitespace(StreamReader reader)
-        {
-            while (char.IsWhiteSpace((char)reader.Peek()))
-            {
-                reader.Read(); //skip next whitespace
-            }
-        }
-
-        private static void SkipNext(StreamReader reader, char[] skipChars, int maxSkips = 1)
-        {
-            var loopCount = 0;
-            while (skipChars.Any(c => c == (char)reader.Peek()) && loopCount < maxSkips)
-            {
-                reader.Read(); //skip next
-                loopCount++;
-            }
-        }
-
-        private static void AddRow(List<Row<string>> rows, ref Row<string> row, ref StringBuilder builder)
-        {
-            if (IsWhiteSpaceOnly(row, builder))
-                return;
-            AddColumn(row, ref builder);
-            rows.Add(row);
-            row = new Row<string>();
-        }
-
-        private static void AddColumn(List<string> row, ref StringBuilder builder)
-        {
-            row.Add(builder.ToString());
-            builder = new StringBuilder();
-        }
-
-        private static bool IsWhiteSpaceOnly(List<string> row, StringBuilder builder)
-        {
-            return row.Count == 0 && string.IsNullOrWhiteSpace(builder.ToString());
+            return Parser.GetRowsFromStream(reader, Delimiter);
         }
 
         private void Clear()

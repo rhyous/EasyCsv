@@ -60,6 +60,7 @@
     <Compile Include="NaiveCsvTests.cs" />
     <Compile Include="TestHelpers\NewLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CsvParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\NaiveNoHeader.csv">

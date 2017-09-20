@@ -343,5 +343,34 @@ namespace Rhyous.EasyCsv.Tests
                 CollectionAssert.AreEqual(rows[i++], row);
             }
         }
+
+        [TestMethod]
+        public void SO5865747CsvTest()
+        {
+            // Arrange         
+            var headers = new List<string>();
+            var rows = new List<List<string>>()
+                        {
+                            new List<string>
+                            {
+                                "1"
+                                ,"1/2/2010"
+                                ,"The sample (\"adasdad\") asdada"
+                                ,"I was pooping in the door \"Stinky\", so I'll be damn"
+                                ,"AK"
+                            }
+                        };
+            // Act
+            var csv = new Csv(@"Data\SO5865747.csv", new CsvParserUnescapedQuotes(), false);
+
+            // Assert
+            CollectionAssert.AreEqual(headers, csv.Headers);
+            Assert.AreEqual(rows.Count, csv.Rows.Count);
+            var i = 0;
+            foreach (var row in csv.Rows)
+            {
+                CollectionAssert.AreEqual(rows[i++], row);
+            }
+        }
     }
 }

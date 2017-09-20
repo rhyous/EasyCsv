@@ -42,7 +42,7 @@ namespace Rhyous.EasyCsv
             get { return File.Exists(CsvPath); }
         }
 
-        public virtual string CsvPath { get; }
+        public virtual string CsvPath { get; protected set; }
 
         public virtual List<string> Headers
         {

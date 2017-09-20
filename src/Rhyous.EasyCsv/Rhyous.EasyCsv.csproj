@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Csv.cs" />
     <Compile Include="CsvBase.cs" />
+    <Compile Include="CsvParserUnescapedQuotes.cs" />
     <Compile Include="CsvParser.cs" />
     <Compile Include="Exceptions\HeaderMissingException.cs" />
     <Compile Include="Extensions\CharExtensions.cs" />

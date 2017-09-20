@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Rhyous.EasyCsv
 {
@@ -16,11 +15,20 @@ namespace Rhyous.EasyCsv
         public Csv(string csvPath, bool hasHeaderRow = true, char delimiter = ',') : base(csvPath, hasHeaderRow, delimiter) { }
         public Csv(string csvPath, char delimiter) : this(csvPath, true, delimiter) { }
 
-        public Csv(Stream stream, bool hasHeaderRow = true, char delimiter = ',')
-            : this("", hasHeaderRow, delimiter)
+        public Csv(string csvPath, ICsvParser parser, bool hasHeaderRow = true, char delimiter = ',') : base(hasHeaderRow, delimiter)
         {
-            _Stream = stream;
-            if (FileExists)
+            CsvPath = csvPath;
+            _Parser = parser;
+            if (File.Exists(csvPath))
+            {
+                ParseCsv();
+            }
+        }
+
+        public Csv(Stream stream, bool hasHeaderRow = true, char delimiter = ',')
+            : this(hasHeaderRow, delimiter)
+        {
+            if ((_Stream = stream) != null)
             {
                 ParseCsv();
             }

@@ -21,5 +21,19 @@ namespace Rhyous.EasyCsv.Tests.Extensions
             // Assert
             CollectionAssert.AreEqual(expected, actual.ToArray());
         }
+
+        [TestMethod]
+        public void TypeExtensions_GetHeaders_Comparer_Test()
+        {
+            // Arrange
+            var expected = new[] { "Id", "Name", "A", "B", "C" };
+            var comparer = new HeaderPriorityComparer();
+
+            // Act
+            var actual = typeof(UnorderedPropertyObject).GetHeaders(comparer);
+
+            // Assert
+            CollectionAssert.AreEqual(expected, actual.ToArray());
+        }
     }
 }

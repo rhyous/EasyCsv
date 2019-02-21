@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ComplexCsvTests.cs" />
+    <Compile Include="Model\HeaderPriorityComparer.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\ToDataTableTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />

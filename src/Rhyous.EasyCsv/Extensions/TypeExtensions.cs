@@ -12,11 +12,14 @@ namespace Rhyous.EasyCsv.Extensions
         /// </summary>
         /// <param name="type">The type</param>
         /// <returns>Returns a list of primitive properties to use as headers.</returns>
-        public static IEnumerable<string> GetHeaders(this Type type)
+        public static IEnumerable<string> GetHeaders(this Type type, IComparer<string> comparer = null)
         {
             if (type == null)
                 return null;
-            return type.GetProperties().Where(p=>p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).Select(p => p.Name);
+            var headers = type.GetProperties().Where(p=>p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).Select(p => p.Name);
+            if (comparer != null)
+                headers = headers.OrderBy(h => h, comparer);
+            return headers;
         }
 
         public static T GetPropertyValue<T>(this object o, string propertyName, T defaultValue = default(T))

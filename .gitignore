@@ -237,3 +237,4 @@ _Pvt_Extensions
 .fake/
 /src/NuGet/Rhyous.EasyCsv.NuGet/lib/net40-client/Rhyous.EasyCsv.dll
 /src/NuGet/Rhyous.EasyCsv.NuGet.Sources/src/App_Packages/**/*
+/src/NuGet/Rhyous.EasyCsv.NuGet/lib/net45

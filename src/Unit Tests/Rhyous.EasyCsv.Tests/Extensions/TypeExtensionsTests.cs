@@ -35,5 +35,18 @@ namespace Rhyous.EasyCsv.Tests.Extensions
             // Assert
             CollectionAssert.AreEqual(expected, actual.ToArray());
         }
+
+        [TestMethod]
+        public void TypeExtensions_GetHeaders_NullableAndDate_Test()
+        {
+            // Arrange
+            var expected = new[] { "Id", "Name", "Date", "NullableInt", "Guid" };
+
+            // Act
+            var actual = typeof(B).GetHeaders();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, actual.ToArray());
+        }
     }
 }

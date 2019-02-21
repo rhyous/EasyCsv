@@ -16,7 +16,14 @@ namespace Rhyous.EasyCsv.Extensions
         {
             if (type == null)
                 return null;
-            var headers = type.GetProperties().Where(p=>p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).Select(p => p.Name);
+            var headers = type.GetProperties()
+                              .Where(p => p.PropertyType.IsPrimitive
+                                       || p.PropertyType == typeof(string)
+                                       || p.PropertyType == typeof(DateTime)
+                                       || p.PropertyType == typeof(Guid)
+                                       || p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>)
+                                     )
+                              .Select(p => p.Name);
             if (comparer != null)
                 headers = headers.OrderBy(h => h, comparer);
             return headers;

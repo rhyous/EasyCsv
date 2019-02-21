@@ -242,7 +242,6 @@ namespace Rhyous.EasyCsv.Tests
             // Assert
             CollectionAssert.AreEqual(headers, csv.Headers);
             Assert.AreEqual(0, csv.Rows.Count);
-            var i = 0;
         }
 
         [TestMethod]

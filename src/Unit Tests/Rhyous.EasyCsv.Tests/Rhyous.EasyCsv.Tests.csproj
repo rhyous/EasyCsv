@@ -56,7 +56,11 @@
     <Compile Include="ComplexCsvTests.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\ToDataTableTests.cs" />
+    <Compile Include="Extensions\ObjectExtensionsTests.cs" />
+    <Compile Include="Extensions\TypeExtensionsTests.cs" />
+    <Compile Include="Extensions\EnumerableExtensionsTests.cs" />
     <Compile Include="Model\RowTests.cs" />
+    <Compile Include="Model\TestModels.cs" />
     <Compile Include="NaiveCsvTests.cs" />
     <Compile Include="TestHelpers\NewLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

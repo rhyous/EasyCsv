@@ -29,7 +29,7 @@ namespace Rhyous.EasyCsv
         {
             var newRow = new Row<T>(Parent);
             newRow.AddRange(row);
-            if (Parent.HasHeaderRow)
+            if (Parent != null && Parent.HasHeaderRow )
             {
                 if (newRow.Count < Parent.Headers.Count)
                     newRow.AddRange(Enumerable.Repeat(default(T), Parent.Headers.Count - newRow.Count));

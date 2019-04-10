@@ -63,9 +63,11 @@
     <Compile Include="Model\RowTests.cs" />
     <Compile Include="Model\TestModels.cs" />
     <Compile Include="NaiveCsvTests.cs" />
+    <Compile Include="Model\RowCollectionTests.cs" />
     <Compile Include="TestHelpers\NewLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CsvParserTests.cs" />
+    <Compile Include="CsvTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\NaiveNoHeader.csv">

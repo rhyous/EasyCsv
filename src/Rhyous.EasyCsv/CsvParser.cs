@@ -22,7 +22,11 @@ namespace Rhyous.EasyCsv
             {
                 var peekChar = (char)reader.Peek();
                 if (!cellDataStarted && peekChar.IsWhiteSpaceButNotNewLine())
+                {
                     SkipWhitespace(reader);
+                    if (reader.EndOfStream)
+                        continue;
+                }
 
                 cellDataStarted = true;
                 char c = (char)reader.Read();
@@ -67,16 +71,8 @@ namespace Rhyous.EasyCsv
                 }
                 builder.Append(c);
             } while (!reader.EndOfStream);
-            AddFinalRow(rows, ref row, ref builder);
+            AddRow(rows, ref row, ref builder);
             return rows;
-        }
-
-        internal static void AddFinalRow(List<Row<string>> rows, ref Row<string> row, ref StringBuilder builder)
-        {
-            if (row.Count > 0)
-            {
-                AddRow(rows, ref row, ref builder);
-            }
         }
 
         internal static void SkipWhitespace(StreamReader reader)

@@ -7,8 +7,15 @@ namespace Rhyous.EasyCsv.Tests
     public class CsvTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Csv_1column1row_Test()
         {
+            // Arrange
+            var csv = new Csv(@"Data\1column1row.csv");
+
+            // Act
+
+            // Assert
+            Assert.AreEqual(1, csv.Rows.Count);
         }
     }
 }

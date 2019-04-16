@@ -22,6 +22,20 @@ namespace Rhyous.EasyCsv.Tests
         }
 
         [TestMethod]
+        public void ParseSimple_1Row_Csv()
+        {
+            // Arrange
+            var csvAsString = "H1\r\n1";
+            var csvParser = new CsvParser();
+
+            // Act
+            var rows = csvParser.GetRowsFromStream(new StreamReader(csvAsString.AsStream()));
+
+            // Assert
+            Assert.AreEqual(2, rows.Count);
+        }
+
+        [TestMethod]
         public void ParseSimpleCsvNoDataInLastColumn()
         {
             // Arrange

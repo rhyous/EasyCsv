@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Rhyous.EasyCsv.Extensions
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         /// <summary>
         /// A method to get a list of primitive properties from an object to use as headers for a csv file.

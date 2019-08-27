@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Rhyous.StringLibrary, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rhyous.StringLibrary.1.1.12\lib\net40-client\Rhyous.StringLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
   </ItemGroup>
@@ -64,6 +67,9 @@
     <Compile Include="Model\TestModels.cs" />
     <Compile Include="NaiveCsvTests.cs" />
     <Compile Include="Model\RowCollectionTests.cs" />
+    <Compile Include="Serializer\CsvSerializer.Serialize.Tests.cs" />
+    <Compile Include="Serializer\CsvSerializer.Deserialize.Tests.cs" />
+    <Compile Include="Model\SimpleObject.cs" />
     <Compile Include="TestHelpers\NewLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CsvParserTests.cs" />
@@ -119,6 +125,7 @@
     <None Include="Data\TabNaive.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\TabNaiveNoHeader.csv">

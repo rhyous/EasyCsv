@@ -1,3 +1,5 @@
+init:
+  - git config --global core.autocrlf false
 version: 1.2.{build}
 image: Visual Studio 2019
 dotnet_csproj:

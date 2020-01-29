@@ -181,7 +181,7 @@ namespace Rhyous.EasyCsv.Tests
                             new List<string> { "\"Hello, he said.", "Missing end quote" },
                             new List<string> { "Hello,\" he said.", "Missing start quote" },
                             new List<string> { "It was her's.","No apostrophe in hers" },
-                            new List<string> { $"She went to the\nstore.", "New line character in the middle of the sentence" }
+                            new List<string> { $"She went to the{Environment.NewLine}store.", "New line character in the middle of the sentence" }
                         };
             // Act
             var csv = new Csv(@"Data\ExcelCreatedTypos.csv");

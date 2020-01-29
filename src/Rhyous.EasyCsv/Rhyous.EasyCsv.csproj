@@ -16,6 +16,7 @@
     <Copyright>Copyright (c) 2016, Jared Barneck (Rhyous)</Copyright>
     <Description>A library to make creating and reading csv easy as well as serializing and deserializing to and from csv.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.2.0</Version>
     <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <FileVersion>1.2.0.0</FileVersion>
   </PropertyGroup>

@@ -193,7 +193,7 @@ namespace Rhyous.EasyCsv.Tests
             Assert.AreEqual(rows.Count, csv.Rows.Count);
             foreach (var row in csv.Rows)
             {
-                CollectionAssert.AreEqual(rows[i++], row);
+                CollectionAssert.AreEqual(rows[i++], row, $"Expected values:{Environment.NewLine} {string.Join(",",rows[i++])}{Environment.NewLine}Actual Values {string.Join(",", row)};");
             }
         }
 

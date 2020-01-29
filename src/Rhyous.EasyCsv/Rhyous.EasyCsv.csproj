@@ -1,79 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15B5CAD8-1CD2-431E-B048-E51C0976AA8B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <Authors>Jared Barneck (Rhyous)</Authors>
+    <Company>Rhyous Publishing LLC</Company>
     <RootNamespace>Rhyous.EasyCsv</RootNamespace>
     <AssemblyName>Rhyous.EasyCsv</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <PackageProjectUrl>https://github.com/rhyous/EasyCsv</PackageProjectUrl>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <PackageIcon>EasyCsv.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/rhyous/EasyCsv</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>xml serialization pretty</PackageTags>
+    <Copyright>Copyright (c) 2016, Jared Barneck (Rhyous)</Copyright>
+    <Description>A library to make creating and reading csv easy as well as serializing and deserializing to and from csv.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Rhyous.StringLibrary, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rhyous.StringLibrary.1.1.12\lib\net40-client\Rhyous.StringLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <None Include="..\..\License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Csv.cs" />
-    <Compile Include="CsvBase.cs" />
-    <Compile Include="CsvParserUnescapedQuotes.cs" />
-    <Compile Include="CsvParser.cs" />
-    <Compile Include="Exceptions\HeaderMissingException.cs" />
-    <Compile Include="Extensions\CharExtensions.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Interfaces\ICsvParser.cs" />
-    <Compile Include="Interfaces\IParent.cs" />
-    <Compile Include="Model\Row.cs" />
-    <Compile Include="Model\RowCollection.cs" />
-    <Compile Include="NaiveCsv.cs" />
-    <Compile Include="Extensions\CsvExtensions.cs" />
-    <Compile Include="Interfaces\ICsv.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serializer\CsvSerializer.cs" />
+    <PackageReference Include="Rhyous.StringLibrary" Version="1.2.17" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

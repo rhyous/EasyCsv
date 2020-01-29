@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Rhyous.EasyCsv.Tests.Extensions;
+using Rhyous.StringLibrary;
 
 namespace Rhyous.EasyCsv.Tests
 {
@@ -180,11 +181,19 @@ namespace Rhyous.EasyCsv.Tests
                         {
                             new List<string> { "\"Hello, he said.", "Missing end quote" },
                             new List<string> { "Hello,\" he said.", "Missing start quote" },
-                            new List<string> { "It was her's.","No apostrophe in hers" },
+                            new List<string> { "It was her's.", "No apostrophe in hers" },
                             new List<string> { $"She went to the{Environment.NewLine}store.", "New line character in the middle of the sentence" }
                         };
+
+            var csvString = "Typo,Message" + Environment.NewLine
+                          + "\"\"\"Hello, he said.\",Missing end quote" + Environment.NewLine
+                          + "\"Hello,\"\" he said.\",Missing start quote" + Environment.NewLine
+                          + "It was her's.,No apostrophe in hers" + Environment.NewLine
+                          + "\"She went to the" + Environment.NewLine
+                          + "store.\",New line character in the middle of the sentence" + Environment.NewLine;
+
             // Act
-            var csv = new Csv(@"Data\ExcelCreatedTypos.csv");
+            var csv = new Csv(csvString.ToStream());
 
             // Assert
             CollectionAssert.AreEqual(headers, csv.Headers);

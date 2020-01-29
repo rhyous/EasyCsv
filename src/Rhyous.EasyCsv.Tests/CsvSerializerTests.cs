@@ -17,7 +17,7 @@ namespace Rhyous.EasyCsv.Tests.Serializer
             // Arrange
             var simpleObject = new SimpleObject { Id = 27, Name = "Simple Object 27" };
             var csvSerializer = new CsvSerializer();
-            var expected = "27, Simple Object 27";
+            var expected = "27,Simple Object 27";
 
             // Act
             var actual = csvSerializer.Serialize(simpleObject);

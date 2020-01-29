@@ -181,7 +181,7 @@ namespace Rhyous.EasyCsv.Tests
                             new List<string> { "\"Hello, he said.", "Missing end quote" },
                             new List<string> { "Hello,\" he said.", "Missing start quote" },
                             new List<string> { "It was her's.","No apostrophe in hers" },
-                            new List<string> { $"She went to the\r\nstore.", "New line character in the middle of the sentence" }
+                            new List<string> { $"She went to the\nstore.", "New line character in the middle of the sentence" }
                         };
             // Act
             var csv = new Csv(@"Data\ExcelCreatedTypos.csv");
@@ -196,7 +196,7 @@ namespace Rhyous.EasyCsv.Tests
                 CollectionAssert.AreEqual(rows[i], row, $"Expected values:{Environment.NewLine}" 
                                                       + $"{string.Join(",",rows[i])}{Environment.NewLine}"
                                                       + $"Actual Values:{Environment.NewLine}"
-                                                      + $"{string.Join(",", row)}");
+                                                      + $"{string.Join(",", row)}{Environment.NewLine}");
                 i++;
             }
         }
